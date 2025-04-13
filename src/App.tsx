@@ -7,7 +7,8 @@ import HeroSection from "./sections/HeroSection";
 import AboutSection from "./sections/AboutSection";
 import ProjectsSection from "./sections/ProjectsSection";
 import ContactSection from "./sections/ContactSection";
-import "./App.css";
+import { Toaster } from "./components/ui/sonner";
+import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
   const [loadingState, setLoadingState] = useState({
@@ -49,32 +50,35 @@ function App() {
 
   const { isLoading, isContentVisible } = loadingState;
 
-  if (isLoading) {
-    return (
-      <ThemeProvider>
-        <LoadingScreen />
-      </ThemeProvider>
-    );
-  }
-
   return (
-    <ThemeProvider>
-      <div
-        className={`min-h-screen bg-bg dark:bg-darkBg ${
-          isContentVisible ? "opacity-100" : "opacity-0"
-        } transition-opacity duration-300`}
-      >
-        <Navbar />
+    <ThemeProvider defaultTheme="light">
+      <AnimatePresence>
+        {isLoading ? (
+          <motion.div key="loading" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+            <LoadingScreen />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="min-h-screen"
+          >
+            <Navbar />
 
-        <main className="relative">
-          <HeroSection />
-          <AboutSection />
-          <ProjectsSection />
-          <ContactSection />
-        </main>
+            <main className="relative pt-24">
+              <HeroSection />
+              <AboutSection />
+              <ProjectsSection />
+              <ContactSection />
+            </main>
 
-        <Footer />
-      </div>
+            <Footer />
+            <Toaster />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </ThemeProvider>
   );
 }
