@@ -79,11 +79,11 @@ const NavBar = () => {
           className={cn(
             `mx-auto mt-4 flex h-[80px] w-full max-w-screen-xl 
             items-center justify-between px-6 transition-transform 
-            duration-300 ease-in-out bg-main dark:bg-darkBg`,
+            duration-300 ease-in-out bg-background dark:bg-background`,
             showNav ? "translate-y-0" : "-translate-y-[calc(100%+40px)]"
           )}
           style={{
-            border: "3px solid black",
+            border: "4px solid black",
             boxShadow: "8px 8px 0px 0px #000000",
           }}
         >
@@ -117,8 +117,7 @@ const NavBar = () => {
               id="mobile-menu-button"
               onClick={() => setIsOpen(!isOpen)}
               size="icon"
-              variant="neutral"
-              className="p-2"
+              className="bg-primary text-black border-2 border-black dark:border-black"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -130,9 +129,9 @@ const NavBar = () => {
       {isOpen && (
         <div className="fixed top-[100px] z-50 w-full px-4">
           <div
-            className="w-full bg-white dark:bg-darkBg p-4"
+            className="w-full bg-background dark:bg-background p-4"
             style={{
-              border: "3px solid black",
+              border: "4px solid black",
               boxShadow: "8px 8px 0px 0px #000000",
             }}
           >
@@ -165,10 +164,10 @@ function NavLinks({ activeSection }: NavLinksProps) {
             key={link.href}
             href={link.href}
             className={cn(
-              "px-3 py-1 font-bold text-black dark:text-white transform transition-all duration-200",
+              "px-4 py-2 font-bold text-black dark:text-white transition-all duration-200 border-2",
               isActive
-                ? "bg-white dark:bg-main border-2 border-black -rotate-2"
-                : "hover:-translate-y-1 hover:rotate-2 border-2 border-transparent"
+                ? "bg-primary border-black dark:border-white -rotate-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+                : "border-transparent hover:border-black dark:hover:border-white hover:-translate-y-1 hover:rotate-2"
             )}
             onClick={(e) => {
               if (link.href.startsWith("#")) {
@@ -207,14 +206,11 @@ function MobileNavLinks({ setIsOpen, activeSection }: MobileNavLinksProps) {
             key={link.href}
             href={link.href}
             className={cn(
-              "p-2 text-center text-lg font-bold transform transition-transform",
+              "p-3 text-center text-lg font-bold transform transition-transform border-2 border-black dark:border-white",
               isActive
-                ? "bg-white dark:bg-main border-2 border-black -rotate-2"
-                : "bg-main dark:bg-darkBg hover:rotate-2 border-2 border-black"
+                ? "bg-primary text-black -rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+                : "bg-background dark:bg-background hover:rotate-1 hover:bg-primary hover:text-black"
             )}
-            style={{
-              boxShadow: "4px 4px 0px 0px #000000",
-            }}
             onClick={(e) => {
               if (link.href.startsWith("#")) {
                 e.preventDefault();
