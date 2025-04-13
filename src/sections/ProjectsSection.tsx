@@ -83,9 +83,9 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
     >
       <div
         className={cn(
-          "h-64 md:h-72 overflow-hidden rounded-xl mb-5 transform transition-all duration-300",
+          "h-64 md:h-72 overflow-hidden rounded-lg mb-5 transform transition-all duration-300",
           "border-4 border-black dark:border-white",
-          "shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]",
+          "shadow-custom-lg dark:shadow-custom-lg-white",
           "group-hover:-translate-y-2 group-hover:-rotate-2",
           project.imagePlaceholder
         )}
@@ -115,7 +115,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
   );
 };
 
-const ProjectsSection = () => {
+const ProjectsSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("Todos");
 
   const filteredProjects =
@@ -153,25 +153,24 @@ const ProjectsSection = () => {
           </div>
 
           {/* Category filter */}
-          <Tabs defaultValue="Todos" className="w-full mb-12">
-            <TabsList className="flex flex-wrap justify-center gap-2 bg-transparent h-auto">
+          <div className="flex justify-center mb-12 overflow-x-auto pb-4">
+            <div className="flex flex-wrap justify-center gap-2">
               {categories.map((category) => (
-                <TabsTrigger
+                <button
                   key={category}
-                  value={category}
                   onClick={() => setActiveCategory(category)}
                   className={cn(
-                    "border-2 border-black dark:border-white rounded-lg px-4 py-2 font-bold",
-                    "data-[state=active]:bg-primary data-[state=active]:text-black",
-                    "data-[state=active]:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:data-[state=active]:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]",
-                    "data-[state=inactive]:bg-secondary data-[state=inactive]:hover:bg-primary/50"
+                    "border-2 border-black dark:border-white rounded-lg px-4 py-2 font-bold whitespace-nowrap",
+                    activeCategory === category
+                      ? "bg-primary text-black shadow-custom dark:shadow-custom-white"
+                      : "bg-secondary hover:bg-primary/50 dark:bg-secondary dark:hover:bg-primary/50"
                   )}
                 >
                   {category}
-                </TabsTrigger>
+                </button>
               ))}
-            </TabsList>
-          </Tabs>
+            </div>
+          </div>
 
           {/* Projects grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -184,7 +183,8 @@ const ProjectsSection = () => {
           <div className="mt-16 text-center">
             <Button
               size="lg"
-              className="text-lg border-4 border-black dark:border-white bg-accent text-white font-bold px-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-1.5 hover:translate-y-1.5 transition-all"
+              variant="accent"
+              className="text-lg border-4 border-black dark:border-white font-bold px-8"
             >
               Ver Todos os Projetos
             </Button>
