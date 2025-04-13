@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "../components/ui/card";
+import { cn } from "@/lib/utils";
 
 interface SkillCardProps {
   title: string;
@@ -18,21 +19,21 @@ const SkillCard: React.FC<SkillCardProps> = ({ title, description, icon, color, 
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
     >
-      <Card
-        className="overflow-hidden border-4 border-black dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:translate-y-[-5px] transition-transform duration-300"
+      <div
+        className="rounded-lg overflow-hidden border-4 border-black dark:border-white shadow-custom-lg dark:shadow-custom-lg-white hover:translate-y-[-5px] transition-transform duration-300"
         style={{ backgroundColor: color }}
       >
-        <CardContent className="p-6">
+        <div className="p-6">
           <div className="mb-4 text-4xl">{icon}</div>
           <h3 className="text-xl font-bold mb-2 text-black">{title}</h3>
           <p className="text-black/80">{description}</p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </motion.div>
   );
 };
 
-const AboutSection = () => {
+const AboutSection: React.FC = () => {
   const skills = [
     {
       title: "Design Gráfico",
@@ -99,7 +100,7 @@ const AboutSection = () => {
               elemento visual deve ter um propósito e contribuir para a história que estamos contando.
             </p>
 
-            <div className="bg-background rounded-xl border-4 border-black dark:border-white p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transform -rotate-1 mt-6">
+            <div className="bg-background rounded-xl border-4 border-black dark:border-white p-6 shadow-custom-lg dark:shadow-custom-lg-white transform -rotate-1 mt-6">
               <p className="text-lg italic">
                 "Design não é apenas como algo se parece, design é como algo funciona."
                 <span className="block text-right mt-2 font-bold">— Steve Jobs</span>
@@ -114,15 +115,15 @@ const AboutSection = () => {
             transition={{ duration: 0.5 }}
             className="relative"
           >
-            <div className="w-full h-64 md:h-96 bg-primary border-4 border-black dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] rounded-xl -rotate-2 overflow-hidden">
+            <div className="w-full h-64 md:h-96 bg-primary border-4 border-black dark:border-white shadow-custom-lg dark:shadow-custom-lg-white rounded-xl -rotate-2 overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-2xl font-bold text-black">Foto ou Ilustração</span>
               </div>
             </div>
 
             {/* Decorative elements */}
-            <div className="absolute -bottom-5 -left-5 w-12 h-12 bg-accent border-4 border-black dark:border-white rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"></div>
-            <div className="absolute -top-5 -right-5 w-20 h-12 bg-blue-400 border-4 border-black dark:border-white rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] transform rotate-12"></div>
+            <div className="absolute -bottom-5 -left-5 w-12 h-12 bg-accent border-4 border-black dark:border-white rounded-full shadow-custom dark:shadow-custom-white"></div>
+            <div className="absolute -top-5 -right-5 w-20 h-12 bg-blue-400 border-4 border-black dark:border-white rounded-lg shadow-custom dark:shadow-custom-white transform rotate-12"></div>
           </motion.div>
         </div>
 
@@ -185,7 +186,7 @@ const AboutSection = () => {
             ].map((experience, index) => (
               <motion.div
                 key={index}
-                className="bg-background rounded-xl border-4 border-black dark:border-white p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] relative"
+                className="bg-background rounded-xl border-4 border-black dark:border-white p-6 shadow-custom-lg dark:shadow-custom-lg-white relative"
                 initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
