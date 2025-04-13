@@ -1,91 +1,96 @@
 @import "tailwindcss";
 
 @theme {
-  /* Color palette */
-  --color-main: #76fbd9;
-  --color-overlay: rgba(0, 0, 0, 0.8);
+  /* Light theme variables */
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-card: #ffffff;
+  --color-card-foreground: #000000;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #000000;
+  --color-primary: #ffd166;
+  --color-primary-foreground: #000000;
+  --color-secondary: #f4f4f4;
+  --color-secondary-foreground: #000000;
+  --color-muted: #f4f4f4;
+  --color-muted-foreground: #525252;
+  --color-accent: #f93d98;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #000000;
+  --color-input: #e5e5e5;
+  --color-ring: #000000;
+  --radius: 0.5rem;
+}
 
-  /* Light theme */
-  --color-bg: #ffffff;
-  --color-text: #000;
-  --color-border: #000;
-
-  /* Dark theme - will be applied when dark class is present */
-  --color-dark-bg: #212121;
-  --color-dark-text: #eeefe9;
-  --color-dark-border: #000;
-  --color-secondary-black: #212121;
-
-  /* Layout */
-  --width-container: 1300px;
-  --radius-base: 5px;
-
-  /* Shadows */
-  --shadow-x: 4px;
-  --shadow-y: 4px;
-  --shadow-color: #000;
-
-  /* Typography */
-  --font-weight-base: 500;
-  --font-weight-heading: 700;
+/* Dark theme variables */
+:root.dark {
+  --color-background: #121212;
+  --color-foreground: #ffffff;
+  --color-card: #1e1e1e;
+  --color-card-foreground: #ffffff;
+  --color-popover: #1e1e1e;
+  --color-popover-foreground: #ffffff;
+  --color-primary: #ffd166;
+  --color-primary-foreground: #000000;
+  --color-secondary: #2a2a2a;
+  --color-secondary-foreground: #ffffff;
+  --color-muted: #2a2a2a;
+  --color-muted-foreground: #a3a3a3;
+  --color-accent: #f93d98;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #ffffff;
+  --color-input: #2a2a2a;
+  --color-ring: #ffffff;
 }
 
 /* Apply theme variables */
 :root {
-  --background: var(--color-bg);
-  --foreground: var(--color-text);
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+  --card: var(--color-card);
+  --card-foreground: var(--color-card-foreground);
+  --popover: var(--color-popover);
+  --popover-foreground: var(--color-popover-foreground);
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-primary-foreground);
+  --secondary: var(--color-secondary);
+  --secondary-foreground: var(--color-secondary-foreground);
+  --muted: var(--color-muted);
+  --muted-foreground: var(--color-muted-foreground);
+  --accent: var(--color-accent);
+  --accent-foreground: var(--color-accent-foreground);
+  --destructive: var(--color-destructive);
+  --destructive-foreground: var(--color-destructive-foreground);
   --border: var(--color-border);
-}
-
-.dark {
-  --background: var(--color-dark-bg);
-  --foreground: var(--color-dark-text);
-  --border: var(--color-dark-border);
+  --input: var(--color-input);
+  --ring: var(--color-ring);
 }
 
 /* Base styles */
 * {
-  @apply border-border;
+  border-color: var(--color-border);
+}
+
+html {
+  font-family: "Space Grotesk", system-ui, sans-serif;
 }
 
 body {
-  @apply bg-background text-foreground;
-  font-weight: var(--font-weight-base);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: var(--font-weight-heading);
-}
-
-.container {
-  width: var(--width-container);
-  max-width: 100%;
-  @apply mx-auto px-4;
-}
-
-/* Custom shadows */
-.shadow-custom {
-  box-shadow: var(--shadow-x) var(--shadow-y) 0px 0px var(--shadow-color);
-}
-
-/* Animations (unchanged from your config) */
-@keyframes accordion-down {
-  from {
-    height: 0;
-  }
-  to {
-    height: var(--radix-accordion-content-height);
-  }
-}
-
+/* Custom animations */
 @keyframes marquee {
   from {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   to {
     transform: translateX(-100%);

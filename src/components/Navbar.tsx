@@ -83,7 +83,7 @@ const NavBar = () => {
           {/* Logo */}
           <h1
             className="text-3xl font-black tracking-tight 
-                      text-black dark:text-white transform -rotate-2 hover:rotate-0 transition-transform 
+                      text-foreground dark:text-foreground transform -rotate-2 hover:rotate-0 transition-transform 
                       duration-300 min-w-[80px] lg:text-5xl"
           >
             <a
@@ -154,9 +154,9 @@ function NavLinks({ activeSection }: NavLinksProps) {
             key={link.href}
             href={link.href}
             className={cn(
-              "px-4 py-2 font-bold text-black dark:text-white transition-all duration-200 border-2",
+              "px-4 py-2 font-bold text-foreground dark:text-foreground transition-all duration-200 border-2",
               isActive
-                ? "bg-primary border-black dark:border-white -rotate-2 shadow-custom dark:shadow-custom-white"
+                ? "bg-primary border-border dark:border-border"
                 : "border-transparent hover:border-black dark:hover:border-white hover:-translate-y-1 hover:rotate-2"
             )}
             onClick={(e) => {
