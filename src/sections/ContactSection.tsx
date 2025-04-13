@@ -5,12 +5,15 @@ import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Label } from "../components/ui/label";
 import { cn } from "../lib/utils";
+import { toast } from "sonner";
 
-const ContactSection = () => {
+const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Implement your form submission logic here
-    alert("Mensagem enviada! (Em um site real, isso enviaria seu formulário)");
+    toast.success("Mensagem enviada com sucesso!", {
+      description: "Entraremos em contato em breve.",
+    });
   };
 
   return (
@@ -41,7 +44,7 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-background dark:bg-background border-4 border-black dark:border-white rounded-xl p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">
+            <div className="bg-background dark:bg-background border-4 border-black dark:border-white rounded-xl p-8 shadow-custom-lg dark:shadow-custom-lg-white">
               <h3 className="text-2xl font-bold mb-6 inline-block relative">
                 <span className="relative z-10">Envie uma mensagem</span>
                 <span className="absolute bottom-0 left-0 w-full h-2 bg-accent -z-10"></span>
@@ -103,7 +106,7 @@ const ContactSection = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full text-lg bg-primary text-black border-2 border-black dark:border-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
+                  className="w-full text-lg bg-primary text-black border-2 border-black dark:border-black font-bold shadow-custom hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
                 >
                   Enviar Mensagem
                 </Button>
@@ -121,8 +124,8 @@ const ContactSection = () => {
             <div className="grid gap-8">
               <div
                 className={cn(
-                  "bg-accent text-white border-4 border-black dark:border-white rounded-xl p-8",
-                  "shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]",
+                  "bg-accent text-accent-foreground border-4 border-black dark:border-white rounded-xl p-8",
+                  "shadow-custom-lg dark:shadow-custom-lg-white",
                   "transform rotate-1"
                 )}
               >
@@ -164,7 +167,7 @@ const ContactSection = () => {
               <div
                 className={cn(
                   "bg-green-400 text-black border-4 border-black dark:border-white rounded-xl p-8",
-                  "shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]",
+                  "shadow-custom-lg dark:shadow-custom-lg-white",
                   "transform -rotate-1"
                 )}
               >
