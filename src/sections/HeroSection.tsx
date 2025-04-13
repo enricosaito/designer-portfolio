@@ -2,8 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
+import { scrollToElement } from "@/lib/utils";
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -42,11 +43,6 @@ const HeroSection = () => {
     },
   };
 
-  const handleScrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       id="home"
@@ -60,7 +56,7 @@ const HeroSection = () => {
       >
         <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
           <motion.div variants={itemVariants} className="relative inline-block mb-4">
-            <span className="text-xl md:text-2xl font-semibold bg-accent text-accent-foreground border-2 border-black dark:border-white py-1 px-3 rounded-md shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] transform -rotate-2">
+            <span className="text-xl md:text-2xl font-semibold bg-accent text-accent-foreground border-2 border-black dark:border-white py-1 px-3 rounded-md shadow-custom dark:shadow-custom-white transform -rotate-2">
               Designer Gráfico & Web
             </span>
           </motion.div>
@@ -84,8 +80,8 @@ const HeroSection = () => {
           <motion.div className="flex flex-wrap gap-4" variants={itemVariants}>
             <Button
               size="lg"
-              onClick={() => handleScrollToSection("projects")}
-              className="border-2 border-black dark:border-white bg-primary text-black dark:text-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
+              onClick={() => scrollToElement("projects")}
+              className="border-2 border-black dark:border-white bg-primary text-black dark:text-black font-bold shadow-custom dark:shadow-custom-white hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
             >
               Ver Projetos
             </Button>
@@ -93,8 +89,8 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              onClick={() => handleScrollToSection("contact")}
-              className="border-2 border-black dark:border-white bg-background text-foreground font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
+              onClick={() => scrollToElement("contact")}
+              className="border-2 border-black dark:border-white bg-background text-foreground font-bold shadow-custom dark:shadow-custom-white hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
             >
               Fale Comigo
             </Button>
@@ -108,7 +104,7 @@ const HeroSection = () => {
               className={cn(
                 "w-64 h-64 md:w-80 md:h-80 rounded-xl flex items-center justify-center",
                 "bg-primary border-4 border-black dark:border-white",
-                "shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]",
+                "shadow-custom-lg dark:shadow-custom-lg-white",
                 "transform rotate-3 overflow-hidden"
               )}
             >
@@ -118,15 +114,15 @@ const HeroSection = () => {
             {/* Decorative elements */}
             <motion.div
               variants={decorationVariants}
-              className="absolute -top-12 -right-8 w-20 h-20 bg-accent rounded-full border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+              className="absolute -top-12 -right-8 w-20 h-20 bg-accent rounded-full border-4 border-black dark:border-white shadow-custom dark:shadow-custom-white"
             />
             <motion.div
               variants={decorationVariants}
-              className="absolute -bottom-10 -left-10 w-16 h-16 bg-blue-400 rounded-md border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+              className="absolute -bottom-10 -left-10 w-16 h-16 bg-blue-400 rounded-md border-4 border-black dark:border-white shadow-custom dark:shadow-custom-white"
             />
             <motion.div
               variants={decorationVariants}
-              className="absolute bottom-20 -right-12 w-24 h-12 bg-green-400 rounded-lg border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] transform rotate-12"
+              className="absolute bottom-20 -right-12 w-24 h-12 bg-green-400 rounded-lg border-4 border-black dark:border-white shadow-custom dark:shadow-custom-white transform rotate-12"
             />
           </div>
         </motion.div>
