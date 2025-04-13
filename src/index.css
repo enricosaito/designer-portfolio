@@ -1,92 +1,91 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: #ffffff;
-    --foreground: #000000;
+@theme {
+  /* Color palette */
+  --color-main: #76fbd9;
+  --color-overlay: rgba(0, 0, 0, 0.8);
 
-    --card: #ffffff;
-    --card-foreground: #000000;
+  /* Light theme */
+  --color-bg: #ffffff;
+  --color-text: #000;
+  --color-border: #000;
 
-    --popover: #ffffff;
-    --popover-foreground: #000000;
+  /* Dark theme - will be applied when dark class is present */
+  --color-dark-bg: #212121;
+  --color-dark-text: #eeefe9;
+  --color-dark-border: #000;
+  --color-secondary-black: #212121;
 
-    --primary: #ffd166;
-    --primary-foreground: #000000;
+  /* Layout */
+  --width-container: 1300px;
+  --radius-base: 5px;
 
-    --secondary: #f4f4f4;
-    --secondary-foreground: #000000;
+  /* Shadows */
+  --shadow-x: 4px;
+  --shadow-y: 4px;
+  --shadow-color: #000;
 
-    --muted: #f4f4f4;
-    --muted-foreground: #525252;
+  /* Typography */
+  --font-weight-base: 500;
+  --font-weight-heading: 700;
+}
 
-    --accent: #f93d98;
-    --accent-foreground: #ffffff;
+/* Apply theme variables */
+:root {
+  --background: var(--color-bg);
+  --foreground: var(--color-text);
+  --border: var(--color-border);
+}
 
-    --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
+.dark {
+  --background: var(--color-dark-bg);
+  --foreground: var(--color-dark-text);
+  --border: var(--color-dark-border);
+}
 
-    --border: #000000;
-    --input: #e5e5e5;
-    --ring: #000000;
+/* Base styles */
+* {
+  @apply border-border;
+}
 
-    --radius: 0.5rem;
+body {
+  @apply bg-background text-foreground;
+  font-weight: var(--font-weight-base);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-heading);
+}
+
+.container {
+  width: var(--width-container);
+  max-width: 100%;
+  @apply mx-auto px-4;
+}
+
+/* Custom shadows */
+.shadow-custom {
+  box-shadow: var(--shadow-x) var(--shadow-y) 0px 0px var(--shadow-color);
+}
+
+/* Animations (unchanged from your config) */
+@keyframes accordion-down {
+  from {
+    height: 0;
   }
-
-  .dark {
-    --background: #121212;
-    --foreground: #ffffff;
-
-    --card: #1e1e1e;
-    --card-foreground: #ffffff;
-
-    --popover: #1e1e1e;
-    --popover-foreground: #ffffff;
-
-    --primary: #ffd166;
-    --primary-foreground: #000000;
-
-    --secondary: #2a2a2a;
-    --secondary-foreground: #ffffff;
-
-    --muted: #2a2a2a;
-    --muted-foreground: #a3a3a3;
-
-    --accent: #f93d98;
-    --accent-foreground: #ffffff;
-
-    --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
-
-    --border: #ffffff;
-    --input: #2a2a2a;
-    --ring: #ffffff;
+  to {
+    height: var(--radix-accordion-content-height);
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  html {
-    font-family: "Space Grotesk", system-ui, sans-serif;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-  }
-}
-
-/* Custom animations */
 @keyframes marquee {
   from {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   to {
     transform: translateX(-100%);
@@ -105,7 +104,6 @@
 .animate-marquee {
   animation: marquee 15s linear infinite;
 }
-
 .animate-marquee2 {
   animation: marquee2 15s linear infinite;
 }
