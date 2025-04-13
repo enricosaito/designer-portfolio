@@ -1,18 +1,14 @@
 import React from "react";
+import { scrollToElement } from "@/lib/utils";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-
-  const scrollToHash = (element_id: string) => {
-    const element = document.getElementById(element_id);
-    element?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-  };
 
   return (
     <footer className="bg-primary text-black py-16 relative">
       {/* Decorative shapes */}
-      <div className="absolute top-0 left-10 w-16 h-16 bg-accent rounded-full border-4 border-black transform -translate-y-1/2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"></div>
-      <div className="absolute top-0 right-20 w-24 h-10 bg-green-400 rounded-lg border-4 border-black transform -translate-y-1/2 rotate-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"></div>
+      <div className="absolute top-0 left-10 w-16 h-16 bg-accent rounded-full border-4 border-black dark:border-black transform -translate-y-1/2 shadow-custom"></div>
+      <div className="absolute top-0 right-20 w-24 h-10 bg-green-400 rounded-lg border-4 border-black dark:border-black transform -translate-y-1/2 rotate-6 shadow-custom"></div>
 
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
@@ -46,7 +42,7 @@ const Footer = () => {
                     className="inline-block hover:underline hover:font-bold transition-all border-b-2 border-transparent hover:border-black"
                     onClick={(e) => {
                       e.preventDefault();
-                      scrollToHash(link.id);
+                      scrollToElement(link.id);
                     }}
                   >
                     {link.label}
@@ -87,7 +83,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="pt-8 border-t-4 border-black flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-bold">© {currentYear} Felipe Designer | Todos os direitos reservados</p>
-          <div className="bg-black text-white px-4 py-2 font-mono text-sm border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+          <div className="bg-black text-white px-4 py-2 font-mono text-sm border-2 border-black shadow-custom">
             &lt;/&gt; Desenvolvido com Vite + React
           </div>
         </div>
