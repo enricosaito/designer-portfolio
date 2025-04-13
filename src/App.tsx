@@ -21,7 +21,7 @@ function App() {
 
     const loadInitialContent = async () => {
       try {
-        // Wait a bit to show the loading screen for demo purposes
+        // Simulating loading resources
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
         if (mounted) {
@@ -52,7 +52,7 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="light">
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isLoading ? (
           <motion.div key="loading" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
             <LoadingScreen />
