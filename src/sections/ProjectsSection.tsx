@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
+import { cn } from "../lib/utils";
 
 interface Project {
   id: number;
@@ -8,6 +10,7 @@ interface Project {
   category: string;
   imagePlaceholder: string;
   description: string;
+  featured?: boolean;
 }
 
 const projects: Project[] = [
@@ -17,6 +20,7 @@ const projects: Project[] = [
     category: "Identidade Visual",
     imagePlaceholder: "bg-yellow-400",
     description: "Redesign completo da marca de uma cafeteria local, incluindo logo, paleta de cores e aplicações.",
+    featured: true,
   },
   {
     id: 2,
@@ -24,6 +28,7 @@ const projects: Project[] = [
     category: "UI/UX Design",
     imagePlaceholder: "bg-blue-400",
     description: "Design de interface para aplicativo de fitness com foco em usabilidade e experiência do usuário.",
+    featured: true,
   },
   {
     id: 3,
@@ -38,6 +43,7 @@ const projects: Project[] = [
     category: "Web Design",
     imagePlaceholder: "bg-purple-400",
     description: "Design de website para empresa de tecnologia sustentável, com foco em storytelling visual.",
+    featured: true,
   },
   {
     id: 5,
@@ -52,6 +58,7 @@ const projects: Project[] = [
     category: "Motion Graphics",
     imagePlaceholder: "bg-pink-400",
     description: "Criação de vídeo institucional animado para empresa de tecnologia.",
+    featured: true,
   },
 ];
 
@@ -65,6 +72,49 @@ const categories = [
   "Motion Graphics",
 ];
 
+const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group"
+    >
+      <div
+        className={cn(
+          "h-64 md:h-72 overflow-hidden rounded-xl mb-5 transform transition-all duration-300",
+          "border-4 border-black dark:border-white",
+          "shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]",
+          "group-hover:-translate-y-2 group-hover:-rotate-2",
+          project.imagePlaceholder
+        )}
+      >
+        <div className="w-full h-full flex items-center justify-center">
+          <span className="text-2xl font-black text-black">Imagem do Projeto</span>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex gap-2 mb-3">
+          <span className="inline-block px-3 py-1 bg-primary text-black text-sm font-bold border-2 border-black dark:border-black rounded-lg transform -rotate-1">
+            {project.category}
+          </span>
+
+          {project.featured && (
+            <span className="inline-block px-3 py-1 bg-accent text-white text-sm font-bold border-2 border-black dark:border-black rounded-lg transform rotate-1">
+              Destaque
+            </span>
+          )}
+        </div>
+
+        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+        <p className="text-gray-700 dark:text-gray-300">{project.description}</p>
+      </div>
+    </motion.div>
+  );
+};
+
 const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("Todos");
 
@@ -72,75 +122,74 @@ const ProjectsSection = () => {
     activeCategory === "Todos" ? projects : projects.filter((project) => project.category === activeCategory);
 
   return (
-    <section id="projects" className="py-20 bg-bg dark:bg-secondaryBlack">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <section id="projects" className="py-24 bg-background dark:bg-background">
+      <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-4xl font-bold mb-6 inline-block relative">
+          <h2 className="text-4xl font-black mb-6 inline-block relative">
             <span className="relative z-10">Projetos</span>
-            <span className="absolute bottom-0 left-0 w-full h-3 bg-main -z-10"></span>
+            <span className="absolute bottom-0 left-0 w-full h-4 bg-primary -z-10"></span>
           </h2>
 
-          <p className="max-w-2xl mx-auto text-lg mb-8">
-            Uma seleção dos meus trabalhos recentes em design gráfico, branding, UI/UX e mais.
+          <p className="max-w-2xl mx-auto text-lg mb-10">
+            Uma seleção dos meus trabalhos recentes em design gráfico, branding, UI/UX e mais. Cada projeto é fruto de
+            uma colaboração próxima e processos criativos dedicados.
           </p>
 
-          {/* Category filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={activeCategory === category ? "default" : "neutral"}
-                onClick={() => setActiveCategory(category)}
-                className="mb-2"
-              >
-                {category}
-              </Button>
+          {/* Featured projects */}
+          <div className="mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+              {projects
+                .filter((project) => project.featured)
+                .slice(0, 3)
+                .map((project, index) => (
+                  <ProjectCard key={project.id} project={project} index={index} />
+                ))}
+            </div>
+          </div>
+
+          {/* Category filter */}
+          <Tabs defaultValue="Todos" className="w-full mb-12">
+            <TabsList className="flex flex-wrap justify-center gap-2 bg-transparent h-auto">
+              {categories.map((category) => (
+                <TabsTrigger
+                  key={category}
+                  value={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={cn(
+                    "border-2 border-black dark:border-white rounded-lg px-4 py-2 font-bold",
+                    "data-[state=active]:bg-primary data-[state=active]:text-black",
+                    "data-[state=active]:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:data-[state=active]:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]",
+                    "data-[state=inactive]:bg-secondary data-[state=inactive]:hover:bg-primary/50"
+                  )}
+                >
+                  {category}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+
+          {/* Projects grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
-        </motion.div>
 
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+          {/* More projects button */}
+          <div className="mt-16 text-center">
+            <Button
+              size="lg"
+              className="text-lg border-4 border-black dark:border-white bg-accent text-white font-bold px-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-1.5 hover:translate-y-1.5 transition-all"
             >
-              <div className="group cursor-pointer">
-                {/* Project image */}
-                <div
-                  className={`${project.imagePlaceholder} h-64 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden rounded-xl mb-4 transform transition-transform group-hover:-rotate-2 group-hover:translate-y-[-8px] duration-300 flex items-center justify-center`}
-                >
-                  <span className="text-black text-xl font-bold">Imagem do Projeto</span>
-                </div>
-
-                {/* Project info */}
-                <div>
-                  <span className="inline-block px-3 py-1 bg-white dark:bg-main text-black text-sm font-semibold border-2 border-black mb-2">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-700 dark:text-gray-300">{project.description}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* More projects button */}
-        <div className="mt-16 text-center">
-          <Button size="lg" className="text-lg px-8">
-            Ver Todos os Projetos
-          </Button>
-        </div>
+              Ver Todos os Projetos
+            </Button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
