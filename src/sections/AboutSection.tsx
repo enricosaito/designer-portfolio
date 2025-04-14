@@ -98,7 +98,7 @@ const AboutSection: React.FC = () => {
           >
             <div className="w-full h-64 md:h-96 bg-primary border-4 border-black dark:border-white shadow-custom-lg dark:shadow-custom-lg-white rounded-xl -rotate-2 overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-2xl font-bold text-black">Foto ou Ilustração</span>
+                <img src="/MyLife.jpg" alt="Profile" className="w-full h-full object-cover object-center" />
               </div>
             </div>
 
@@ -146,23 +146,22 @@ const AboutSection: React.FC = () => {
           <div className="space-y-6 max-w-3xl mx-auto">
             {[
               {
-                period: "2021 - Presente",
-                role: "Designer Sênior",
-                company: "Agência Criativa XYZ",
-                description:
-                  "Liderança de projetos de branding e UI/UX design para clientes nacionais e internacionais.",
+                period: "2024 - Presente",
+                role: "Lead Designer",
+                company: "Óticas Sider",
+                description: "Liderança de projetos de branding, criativos e campanhas de marketing.",
               },
               {
-                period: "2019 - 2021",
-                role: "UI/UX Designer",
-                company: "Estúdio Digital Beta",
-                description: "Desenvolvimento de interfaces e experiências para aplicativos e websites.",
+                period: "2023 - 2024",
+                role: "Designer Júnior",
+                company: "Casual Boutique",
+                description: "Desenvolvimento de identidades visuais e rebranding.",
               },
               {
-                period: "2018 - 2019",
+                period: "2018 - 2022",
                 role: "Designer Gráfico",
-                company: "Marca Criativa",
-                description: "Criação de identidades visuais e materiais impressos para empresas de diversos setores.",
+                company: "Freelancer",
+                description: "Criação de logos e banners para marcas pessoais.",
               },
             ].map((experience, index) => (
               <motion.div

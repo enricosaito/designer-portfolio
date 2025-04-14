@@ -8,36 +8,41 @@ interface Project {
   category: string;
   imagePlaceholder: string;
   description: string;
+  imageUrl?: string; // New optional field for actual image
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: "Rebrand Café Cultura",
+    title: "Lançamento Mini Casual",
     category: "Identidade Visual",
     imagePlaceholder: "bg-main",
-    description: "Redesign completo da marca de uma cafeteria local, incluindo logo, paleta de cores e aplicações.",
+    description: "Criação de peças visuais para campanha de verão de uma marca de roupas.",
+    imageUrl: "/MiniCasual.png",
   },
   {
     id: 2,
-    title: "App Fitness+",
-    category: "UI/UX Design",
-    imagePlaceholder: "bg-blue-400",
-    description: "Design de interface para aplicativo de fitness com foco em usabilidade e experiência do usuário.",
+    title: "Stellar Solutions",
+    category: "Modelagem 3D",
+    imagePlaceholder: "bg-purple-400",
+    description: "Design de website para empresa de tecnologia sustentável, com foco em storytelling visual.",
+    imageUrl: "/Stellar3D.png",
   },
   {
     id: 3,
-    title: "Campanha Verão 2024",
+    title: "Kingdom Pizzaria",
     category: "Design Gráfico",
     imagePlaceholder: "bg-green-400",
-    description: "Criação de peças visuais para campanha de verão de uma marca de roupas.",
+    description: "Redesign completo da marca de uma cafeteria local, incluindo logo, paleta de cores e aplicações.",
+    imageUrl: "/Kingdom.png",
   },
   {
     id: 4,
-    title: "Website Eco Tech",
-    category: "Web Design",
-    imagePlaceholder: "bg-purple-400",
-    description: "Design de website para empresa de tecnologia sustentável, com foco em storytelling visual.",
+    title: "Logo Martins Piscinas",
+    category: "UI/UX Design",
+    imagePlaceholder: "bg-blue-400",
+    description: "Design de interface para aplicativo de fitness com foco em usabilidade e experiência do usuário.",
+    imageUrl: "/MartinsPiscinas.png",
   },
   {
     id: 5,
@@ -45,13 +50,15 @@ const projects: Project[] = [
     category: "Design de Produto",
     imagePlaceholder: "bg-red-400",
     description: "Design de embalagem sustentável para linha de produtos orgânicos.",
+    imageUrl: "/CasualBag.png",
   },
   {
     id: 6,
-    title: "Vídeo Institucional",
-    category: "Motion Graphics",
+    title: "Identidade Visual Atendflow",
+    category: "Web Design",
     imagePlaceholder: "bg-pink-400",
-    description: "Criação de vídeo institucional animado para empresa de tecnologia.",
+    description: "Criação de branding, site animado e concepção de produto para empresa de tecnologia.",
+    imageUrl: "/LogoAtendflow.png",
   },
 ];
 
@@ -79,12 +86,16 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
         "border-4 border-black dark:border-white",
         "shadow-custom-lg dark:shadow-custom-lg-white",
         "group-hover:-translate-y-2 group-hover:-rotate-2",
-        project.imagePlaceholder
+        !project.imageUrl && project.imagePlaceholder // Only apply background color if no image
       )}
     >
-      <div className="w-full h-full flex items-center justify-center">
-        <span className="text-2xl font-black text-black">Imagem do Projeto</span>
-      </div>
+      {project.imageUrl ? (
+        <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover object-center" />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center">
+          <span className="text-2xl font-black text-black">Imagem do Projeto</span>
+        </div>
+      )}
     </div>
 
     <div>

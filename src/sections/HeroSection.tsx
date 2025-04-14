@@ -90,7 +90,7 @@ const HeroSection: React.FC = () => {
               variant="outline"
               size="lg"
               onClick={() => scrollToElement("contact")}
-              className="border-2 border-black dark:border-white bg-[#FFD166] text-foreground font-bold shadow-custom dark:shadow-custom-white hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
+              className="border-2 border-black dark:border-white bg-[#05DF72] text-foreground font-bold shadow-custom dark:shadow-custom-white hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
             >
               Fale Comigo
             </Button>
@@ -153,7 +153,7 @@ const HeroSection: React.FC = () => {
           <p className="mb-2 text-sm font-medium">Role para baixo</p>
           <div className="w-6 h-10 border-2 border-black dark:border-white rounded-full flex justify-center">
             <motion.div
-              className="w-2 h-2 bg-black dark:bg-white rounded-full mt-2"
+              className="w-2 h-2 bg-black dark:bg-[#000000] rounded-full mt-2"
               animate={{
                 y: [0, 12, 0],
                 transition: {

@@ -138,7 +138,7 @@ const ContactSection: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="text-lg font-bold mb-1">Email</h4>
-                      <p className="text-white">felipe@designerportfolio.com</p>
+                      <p className="text-white">felipecmoraesvr@gmail.com</p>
                     </div>
                   </div>
 
@@ -148,7 +148,7 @@ const ContactSection: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="text-lg font-bold mb-1">Telefone</h4>
-                      <p className="text-white">(11) 98765-4321</p>
+                      <p className="text-white">(24) 99296-7997</p>
                     </div>
                   </div>
 
