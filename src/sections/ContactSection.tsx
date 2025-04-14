@@ -158,7 +158,7 @@ const ContactSection: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="text-lg font-bold mb-1">Localização</h4>
-                      <p className="text-white">São Paulo, Brasil</p>
+                      <p className="text-white">Volta Redonda, RJ</p>
                     </div>
                   </div>
                 </div>
@@ -179,7 +179,7 @@ const ContactSection: React.FC = () => {
                     { name: "Behance", icon: "Be" },
                     { name: "Instagram", icon: "Ig" },
                     { name: "LinkedIn", icon: "In" },
-                    { name: "Dribbble", icon: "Dr" },
+                    { name: "Twitter", icon: "Dr" },
                   ].map((social) => (
                     <a
                       key={social.name}
