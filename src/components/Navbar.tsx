@@ -77,9 +77,9 @@ const NavBar = () => {
         <div
           className={cn(
             `mx-auto mt-4 flex h-[80px] w-full max-w-screen-xl 
-            items-center justify-between px-6 transition-transform 
-            duration-300 ease-in-out bg-[#FFD166] dark:bg-darkBg
-            border-4 border-black dark:border-white shadow-custom-lg`,
+    items-center justify-between px-6 transition-transform 
+    duration-300 ease-in-out bg-[#FFD166] dark:bg-darkBg
+    border-4 border-black shadow-custom-lg`,
             showNav ? "translate-y-0" : "-translate-y-[calc(100%+40px)]"
           )}
         >
