@@ -17,7 +17,7 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-secondary dark:bg-secondary">
+    <section id="contact" className="py-24 bg-bg dark:bg-darkBg">
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -27,7 +27,7 @@ const ContactSection: React.FC = () => {
         >
           <h2 className="text-4xl font-black mb-6 inline-block relative">
             <span className="relative z-10">Contato</span>
-            <span className="absolute bottom-0 left-0 w-full h-4 bg-primary -z-10 transform rotate-1"></span>
+            <span className="absolute bottom-0 left-0 w-full h-4 bg-main -z-10 transform rotate-1"></span>
           </h2>
 
           <p className="max-w-2xl mx-auto text-lg mb-4">
@@ -44,7 +44,7 @@ const ContactSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-background dark:bg-background border-4 border-black dark:border-white rounded-xl p-8 shadow-custom-lg dark:shadow-custom-lg-white">
+            <div className="bg-white dark:bg-darkBg border-4 border-black dark:border-white rounded-base p-8 shadow-custom-lg dark:shadow-custom-lg-white">
               <h3 className="text-2xl font-bold mb-6 inline-block relative">
                 <span className="relative z-10">Envie uma mensagem</span>
                 <span className="absolute bottom-0 left-0 w-full h-2 bg-accent -z-10"></span>
@@ -60,7 +60,7 @@ const ContactSection: React.FC = () => {
                     type="text"
                     placeholder="Seu nome completo"
                     required
-                    className="border-2 border-black dark:border-white h-12 bg-background"
+                    className="border-2 border-black dark:border-white h-12 bg-white dark:bg-darkBg"
                   />
                 </div>
 
@@ -73,7 +73,7 @@ const ContactSection: React.FC = () => {
                     type="email"
                     placeholder="seu@email.com"
                     required
-                    className="border-2 border-black dark:border-white h-12 bg-background"
+                    className="border-2 border-black dark:border-white h-12 bg-white dark:bg-darkBg"
                   />
                 </div>
 
@@ -86,7 +86,7 @@ const ContactSection: React.FC = () => {
                     type="text"
                     placeholder="Sobre o que você quer falar?"
                     required
-                    className="border-2 border-black dark:border-white h-12 bg-background"
+                    className="border-2 border-black dark:border-white h-12 bg-white dark:bg-darkBg"
                   />
                 </div>
 
@@ -99,14 +99,14 @@ const ContactSection: React.FC = () => {
                     placeholder="Conte-me mais sobre seu projeto..."
                     rows={6}
                     required
-                    className="border-2 border-black dark:border-white min-h-[150px] bg-background"
+                    className="border-2 border-black dark:border-white min-h-[150px] bg-white dark:bg-darkBg"
                   />
                 </div>
 
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full text-lg bg-primary text-black border-2 border-black dark:border-black font-bold shadow-custom hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
+                  className="w-full text-lg bg-main text-black border-2 border-black dark:border-black font-bold shadow-custom hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
                 >
                   Enviar Mensagem
                 </Button>
@@ -124,7 +124,7 @@ const ContactSection: React.FC = () => {
             <div className="grid gap-8">
               <div
                 className={cn(
-                  "bg-accent text-accent-foreground border-4 border-black dark:border-white rounded-xl p-8",
+                  "bg-accent text-accent-foreground border-4 border-black dark:border-white rounded-base p-8",
                   "shadow-custom-lg dark:shadow-custom-lg-white",
                   "transform rotate-1"
                 )}
@@ -133,7 +133,7 @@ const ContactSection: React.FC = () => {
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary text-black flex items-center justify-center rounded-full border-2 border-black font-bold text-xl">
+                    <div className="w-10 h-10 bg-main text-black flex items-center justify-center rounded-full border-2 border-black font-bold text-xl">
                       @
                     </div>
                     <div>
@@ -143,7 +143,7 @@ const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary text-black flex items-center justify-center rounded-full border-2 border-black font-bold text-xl">
+                    <div className="w-10 h-10 bg-main text-black flex items-center justify-center rounded-full border-2 border-black font-bold text-xl">
                       📱
                     </div>
                     <div>
@@ -153,7 +153,7 @@ const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-primary text-black flex items-center justify-center rounded-full border-2 border-black font-bold text-xl">
+                    <div className="w-10 h-10 bg-main text-black flex items-center justify-center rounded-full border-2 border-black font-bold text-xl">
                       📍
                     </div>
                     <div>
@@ -166,7 +166,7 @@ const ContactSection: React.FC = () => {
 
               <div
                 className={cn(
-                  "bg-green-400 text-black border-4 border-black dark:border-white rounded-xl p-8",
+                  "bg-green-400 text-black border-4 border-black dark:border-white rounded-base p-8",
                   "shadow-custom-lg dark:shadow-custom-lg-white",
                   "transform -rotate-1"
                 )}
@@ -184,7 +184,7 @@ const ContactSection: React.FC = () => {
                     <a
                       key={social.name}
                       href="#"
-                      className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg border-2 border-black font-bold hover:bg-primary transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-base border-2 border-black font-bold hover:bg-main transition-colors"
                     >
                       <span className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs">
                         {social.icon}

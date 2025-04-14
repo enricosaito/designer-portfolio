@@ -1,7 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent } from "../components/ui/card";
-import { cn } from "@/lib/utils";
 
 interface SkillCardProps {
   title: string;
@@ -65,23 +63,6 @@ const AboutSection: React.FC = () => {
   return (
     <section id="about" className="py-24 bg-secondary dark:bg-secondary">
       <div className="container mx-auto px-6 max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-4xl font-black mb-6 inline-block relative">
-            <span className="relative z-10">Sobre Mim</span>
-            <span className="absolute bottom-0 left-0 w-full h-4 bg-primary -z-10 transform -rotate-1"></span>
-          </h2>
-
-          <p className="max-w-2xl mx-auto text-lg">
-            Olá! Sou Felipe, designer com mais de 5 anos de experiência. Minha paixão é criar designs que não apenas
-            atraem o olhar, mas também comunicam de forma eficaz e resolvem problemas reais.
-          </p>
-        </motion.div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
           <motion.div
             initial={{ opacity: 0, x: -50 }}

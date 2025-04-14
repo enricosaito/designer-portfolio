@@ -1,11 +1,11 @@
 import React from "react";
-import { scrollToElement } from "@/lib/utils";
+import { scrollToElement } from "../lib/utils";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-black py-16 relative">
+    <footer className="bg-main text-black py-16 relative">
       {/* Decorative shapes */}
       <div className="absolute top-0 left-10 w-16 h-16 bg-accent rounded-full border-4 border-black dark:border-black transform -translate-y-1/2 shadow-custom"></div>
       <div className="absolute top-0 right-20 w-24 h-10 bg-green-400 rounded-lg border-4 border-black dark:border-black transform -translate-y-1/2 rotate-6 shadow-custom"></div>

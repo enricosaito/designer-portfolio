@@ -1,64 +1,29 @@
-import React from "react";
-import { motion } from "framer-motion";
-
-const LoadingScreen: React.FC = () => {
+const LoadingScreen = () => {
   return (
-    <div className="fixed inset-0 bg-primary dark:bg-background flex items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 bg-yellow-300 dark:bg-purple-900 transition-colors duration-300 flex items-center justify-center">
       <div className="relative">
-        {/* Main loading container */}
-        <motion.div
-          className="text-5xl sm:text-6xl font-black bg-white dark:bg-background p-8 
-                    border-4 border-black dark:border-white 
-                    shadow-custom-lg dark:shadow-custom-lg-white"
-          initial={{ rotate: 5 }}
-          animate={{ rotate: [5, -3, 5] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          CARREGANDO
-          {/* Loading dots */}
-          <div className="flex gap-3 mt-6 justify-center">
-            {[0, 1, 2].map((index) => (
-              <motion.div
-                key={index}
-                className="w-5 h-5 bg-black dark:bg-white rounded-full"
-                initial={{ y: 0 }}
-                animate={{ y: [-10, 0, -10] }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.2,
-                }}
-              />
-            ))}
-          </div>
-        </motion.div>
+        {/* Main loading text */}
+        <div className="text-5xl sm:text-6xl font-black bg-white dark:bg-gray-900 dark:text-white p-8 rotate-2 border-4 border-black dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">
+          LOADING
+        </div>
 
         {/* Decorative elements */}
-        <motion.div
-          className="absolute -top-10 -right-10 w-20 h-20 bg-accent border-4 border-black 
-                   dark:border-white shadow-custom dark:shadow-custom-white rounded-full"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1, rotate: 360 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        />
+        <div className="absolute -top-6 -right-6 w-14 h-14 bg-pink-500 dark:bg-teal-400 border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] rounded-full animate-spin-slow" />
+        <div className="absolute -bottom-6 -left-6 w-10 h-10 bg-blue-400 dark:bg-orange-400 border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] rounded-md animate-pulse" />
 
-        <motion.div
-          className="absolute -bottom-8 -left-8 w-16 h-16 bg-green-400 border-4 border-black 
-                   dark:border-white shadow-custom dark:shadow-custom-white rounded-md"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        />
+        {/* Loading dots */}
+        <div className="flex gap-3 mt-8 justify-center">
+          {[0, 1, 2, 3].map((index) => (
+            <div
+              key={index}
+              className="w-4 h-4 bg-black dark:bg-white rounded-full animate-bounce"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            />
+          ))}
+        </div>
 
         {/* Rotating square */}
-        <motion.div
-          className="absolute -bottom-12 -right-12 w-24 h-24 bg-blue-400 border-4 border-black 
-                   dark:border-white shadow-custom dark:shadow-custom-white"
-          initial={{ scale: 0, rotate: 0 }}
-          animate={{ scale: 1, rotate: [0, 180, 360] }}
-          transition={{ duration: 3, repeat: Infinity, delay: 0.6, ease: "easeInOut" }}
-        />
+        <div className="absolute -top-14 -left-14 w-16 h-16 bg-yellow-500 dark:bg-red-400 border-4 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] transform rotate-45" />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
-import { scrollToElement } from "@/lib/utils";
+import { scrollToElement } from "../lib/utils";
 
 const HeroSection: React.FC = () => {
   // Animation variants
@@ -65,9 +65,9 @@ const HeroSection: React.FC = () => {
             variants={itemVariants}
             className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter"
           >
-            Oi! Eu sou{" "}
+            Felipe{" "}
             <span className="inline-block relative">
-              Felipe
+              Moraes
               <span className="absolute bottom-2 left-0 w-full h-4 bg-primary -z-10"></span>
             </span>
           </motion.h1>
@@ -99,16 +99,24 @@ const HeroSection: React.FC = () => {
 
         <motion.div className="w-full lg:w-1/2 flex justify-center items-center" variants={itemVariants}>
           <div className="relative">
-            {/* Profile picture */}
-            <div
-              className={cn(
-                "w-64 h-64 md:w-80 md:h-80 rounded-xl flex items-center justify-center",
-                "bg-primary border-4 border-black dark:border-white",
-                "shadow-custom-lg dark:shadow-custom-lg-white",
-                "transform rotate-3 overflow-hidden"
-              )}
-            >
-              <span className="text-9xl font-black text-black">F</span>
+            {/* Profile picture with container */}
+            <div className="relative">
+              {/* Contêiner principal com borda e shadow */}
+              <div
+                className={cn(
+                  "w-64 h-64 md:w-80 md:h-80 rounded-xl",
+                  "bg-primary border-4 border-black dark:border-white",
+                  "shadow-custom-lg dark:shadow-custom-lg-white",
+                  "transform rotate-3"
+                )}
+              />
+
+              {/* Imagem posicionada sobre o contêiner */}
+              <img
+                src="/Felipones.png"
+                alt="Profile Picture"
+                className="absolute top-[-42.5%] left-[4%] right-[4%] w-[92%] h-auto z-10 transform rotate-3 scale-105"
+              />
             </div>
 
             {/* Decorative elements */}
@@ -157,31 +165,6 @@ const HeroSection: React.FC = () => {
             />
           </div>
         </div>
-      </motion.div>
-
-      {/* Social media links */}
-      <motion.div
-        className="absolute top-1/2 -translate-y-1/2 left-6 hidden lg:flex flex-col gap-6"
-        initial={{ x: -20, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-      >
-        {[
-          { name: "Behance", href: "#" },
-          { name: "Instagram", href: "#" },
-          { name: "LinkedIn", href: "#" },
-        ].map((social) => (
-          <a
-            key={social.name}
-            href={social.href}
-            className="w-8 h-8 flex items-center justify-center border-2 border-black dark:border-white rounded-full hover:bg-primary transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="text-xs font-bold">{social.name.charAt(0)}</span>
-          </a>
-        ))}
-        <div className="w-0.5 h-32 bg-black dark:bg-white mx-auto"></div>
       </motion.div>
     </section>
   );

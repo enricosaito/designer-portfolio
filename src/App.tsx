@@ -48,7 +48,7 @@ function App() {
     };
   }, []);
 
-  const { isLoading, isContentVisible } = loadingState;
+  const { isLoading } = loadingState;
 
   return (
     <ThemeProvider defaultTheme="light">
@@ -63,7 +63,7 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen"
+            className="min-h-screen bg-bg dark:bg-darkBg text-text dark:text-darkText"
           >
             <Navbar />
 
