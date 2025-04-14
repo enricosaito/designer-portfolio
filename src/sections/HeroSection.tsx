@@ -81,7 +81,7 @@ const HeroSection: React.FC = () => {
             <Button
               size="lg"
               onClick={() => scrollToElement("projects")}
-              className="border-2 border-black dark:border-white bg-primary text-black dark:text-black font-bold shadow-custom dark:shadow-custom-white hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
+              className="border-2 border-black dark:border-white bg-[#51A2FF] text-black dark:text-black font-bold shadow-custom dark:shadow-custom-white hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
             >
               Ver Projetos
             </Button>
@@ -90,7 +90,7 @@ const HeroSection: React.FC = () => {
               variant="outline"
               size="lg"
               onClick={() => scrollToElement("contact")}
-              className="border-2 border-black dark:border-white bg-background text-foreground font-bold shadow-custom dark:shadow-custom-white hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
+              className="border-2 border-black dark:border-white bg-[#FFD166] text-foreground font-bold shadow-custom dark:shadow-custom-white hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
             >
               Fale Comigo
             </Button>
