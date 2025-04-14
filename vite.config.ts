@@ -11,4 +11,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ["clsx", "tailwind-merge", "framer-motion", "sonner"],
+  },
+  build: {
+    sourcemap: true,
+    cssMinify: true,
+    minify: true,
+  },
 });

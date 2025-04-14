@@ -4,31 +4,35 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Label } from "../components/ui/label";
+import { cn } from "../lib/utils";
+import { toast } from "sonner";
 
-const ContactSection = () => {
+const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // This would be replaced with actual form submission logic
-    alert("Obrigado por entrar em contato! Esta funcionalidade estará disponível em breve.");
+    // Implement your form submission logic here
+    toast.success("Mensagem enviada com sucesso!", {
+      description: "Entraremos em contato em breve.",
+    });
   };
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-darkBg">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <section id="contact" className="py-24 bg-bg dark:bg-darkBg">
+      <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-4xl font-bold mb-6 inline-block relative">
+          <h2 className="text-4xl font-black mb-6 inline-block relative">
             <span className="relative z-10">Contato</span>
-            <span className="absolute bottom-0 left-0 w-full h-3 bg-main -z-10"></span>
+            <span className="absolute bottom-0 left-0 w-full h-4 bg-main -z-10 transform rotate-1"></span>
           </h2>
 
-          <p className="max-w-2xl mx-auto text-lg">
-            Tem um projeto em mente? Vamos conversar! Preencha o formulário abaixo e entrarei em contato com você em
-            breve.
+          <p className="max-w-2xl mx-auto text-lg mb-4">
+            Tem um projeto em mente? Vamos conversar! Preencha o formulário abaixo ou entre em contato diretamente
+            através dos meus canais.
           </p>
         </motion.div>
 
@@ -40,63 +44,74 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-base font-bold">
-                  Nome
-                </Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="Seu nome"
-                  required
-                  className="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] h-12"
-                />
-              </div>
+            <div className="bg-white dark:bg-darkBg border-4 border-black dark:border-white rounded-base p-8 shadow-custom-lg dark:shadow-custom-lg-white">
+              <h3 className="text-2xl font-bold mb-6 inline-block relative">
+                <span className="relative z-10">Envie uma mensagem</span>
+                <span className="absolute bottom-0 left-0 w-full h-2 bg-accent -z-10"></span>
+              </h3>
 
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-base font-bold">
-                  Email
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="seu@email.com"
-                  required
-                  className="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] h-12"
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-base font-bold">
+                    Nome
+                  </Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Seu nome completo"
+                    required
+                    className="border-2 border-black dark:border-white h-12 bg-white dark:bg-darkBg"
+                  />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="subject" className="text-base font-bold">
-                  Assunto
-                </Label>
-                <Input
-                  id="subject"
-                  type="text"
-                  placeholder="Sobre o que você quer falar?"
-                  required
-                  className="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] h-12"
-                />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-base font-bold">
+                    Email
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="seu@email.com"
+                    required
+                    className="border-2 border-black dark:border-white h-12 bg-white dark:bg-darkBg"
+                  />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="message" className="text-base font-bold">
-                  Mensagem
-                </Label>
-                <Textarea
-                  id="message"
-                  placeholder="Conte-me mais sobre seu projeto..."
-                  rows={6}
-                  required
-                  className="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="subject" className="text-base font-bold">
+                    Assunto
+                  </Label>
+                  <Input
+                    id="subject"
+                    type="text"
+                    placeholder="Sobre o que você quer falar?"
+                    required
+                    className="border-2 border-black dark:border-white h-12 bg-white dark:bg-darkBg"
+                  />
+                </div>
 
-              <Button type="submit" size="lg" className="text-lg w-full">
-                Enviar Mensagem
-              </Button>
-            </form>
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-base font-bold">
+                    Mensagem
+                  </Label>
+                  <Textarea
+                    id="message"
+                    placeholder="Conte-me mais sobre seu projeto..."
+                    rows={6}
+                    required
+                    className="border-2 border-black dark:border-white min-h-[150px] bg-white dark:bg-darkBg"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full text-lg bg-main text-black border-2 border-black dark:border-black font-bold shadow-custom hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
+                >
+                  Enviar Mensagem
+                </Button>
+              </form>
+            </div>
           </motion.div>
 
           {/* Contact info */}
@@ -105,30 +120,78 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col justify-center"
           >
-            <div className="bg-main border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 rounded-xl rotate-2">
-              <h3 className="text-2xl font-bold mb-6">Informações de Contato</h3>
+            <div className="grid gap-8">
+              <div
+                className={cn(
+                  "bg-accent text-accent-foreground border-4 border-black dark:border-white rounded-base p-8",
+                  "shadow-custom-lg dark:shadow-custom-lg-white",
+                  "transform rotate-1"
+                )}
+              >
+                <h3 className="text-2xl font-bold mb-6">Informações de Contato</h3>
 
-              <div className="space-y-6">
-                <div>
-                  <h4 className="text-lg font-bold mb-1">Email</h4>
-                  <p className="text-gray-800">felipe@designerportfolio.com</p>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-main text-black flex items-center justify-center rounded-full border-2 border-black font-bold text-xl">
+                      @
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Email</h4>
+                      <p className="text-white">felipecmoraesvr@gmail.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-main text-black flex items-center justify-center rounded-full border-2 border-black font-bold text-xl">
+                      📱
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Telefone</h4>
+                      <p className="text-white">(24) 99296-7997</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-main text-black flex items-center justify-center rounded-full border-2 border-black font-bold text-xl">
+                      📍
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Localização</h4>
+                      <p className="text-white">Volta Redonda, RJ</p>
+                    </div>
+                  </div>
                 </div>
+              </div>
 
-                <div>
-                  <h4 className="text-lg font-bold mb-1">Instagram</h4>
-                  <p className="text-gray-800">@felipe.designer</p>
-                </div>
+              <div
+                className={cn(
+                  "bg-green-400 text-black border-4 border-black dark:border-white rounded-base p-8",
+                  "shadow-custom-lg dark:shadow-custom-lg-white",
+                  "transform -rotate-1"
+                )}
+              >
+                <h3 className="text-2xl font-bold mb-4">Redes Sociais</h3>
+                <p className="mb-6">Me encontre nas redes sociais e vamos conversar!</p>
 
-                <div>
-                  <h4 className="text-lg font-bold mb-1">Localização</h4>
-                  <p className="text-gray-800">São Paulo, Brasil</p>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-bold mb-1">Horário de Trabalho</h4>
-                  <p className="text-gray-800">Segunda a Sexta, 9h às 18h</p>
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    { name: "Behance", icon: "Be" },
+                    { name: "Instagram", icon: "Ig" },
+                    { name: "LinkedIn", icon: "In" },
+                    { name: "Twitter", icon: "Dr" },
+                  ].map((social) => (
+                    <a
+                      key={social.name}
+                      href="#"
+                      className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-base border-2 border-black font-bold hover:bg-main transition-colors"
+                    >
+                      <span className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs">
+                        {social.icon}
+                      </span>
+                      {social.name}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>

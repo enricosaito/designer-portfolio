@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import type React from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "../lib/utils";
 import { ThemeSwitcher } from "./theme-switcher";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
-
-const scrollToHash = function (element_id: string) {
-  const element = document.getElementById(element_id);
-  element?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-};
+import { scrollToElement } from "../lib/utils";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,26 +77,23 @@ const NavBar = () => {
         <div
           className={cn(
             `mx-auto mt-4 flex h-[80px] w-full max-w-screen-xl 
-            items-center justify-between px-6 transition-transform 
-            duration-300 ease-in-out bg-main dark:bg-darkBg`,
+    items-center justify-between px-6 transition-transform 
+    duration-300 ease-in-out bg-[#FFD166] dark:bg-darkBg
+    border-4 border-black shadow-custom-lg`,
             showNav ? "translate-y-0" : "-translate-y-[calc(100%+40px)]"
           )}
-          style={{
-            border: "3px solid black",
-            boxShadow: "8px 8px 0px 0px #000000",
-          }}
         >
           {/* Logo */}
           <h1
             className="text-3xl font-black tracking-tight 
-                        text-black dark:text-white transform -rotate-2 hover:rotate-0 transition-transform 
-                        duration-300 min-w-[80px] lg:text-5xl"
+                      text-black dark:text-darkText transform -rotate-2 hover:rotate-0 transition-transform 
+                      duration-300 min-w-[80px] lg:text-5xl"
           >
             <a
               href="#home"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToHash("home");
+                scrollToElement("home");
               }}
             >
               Felipe
@@ -117,8 +113,7 @@ const NavBar = () => {
               id="mobile-menu-button"
               onClick={() => setIsOpen(!isOpen)}
               size="icon"
-              variant="neutral"
-              className="p-2"
+              className="bg-main text-black border-2 border-black dark:border-black"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -130,11 +125,8 @@ const NavBar = () => {
       {isOpen && (
         <div className="fixed top-[100px] z-50 w-full px-4">
           <div
-            className="w-full bg-white dark:bg-darkBg p-4"
-            style={{
-              border: "3px solid black",
-              boxShadow: "8px 8px 0px 0px #000000",
-            }}
+            className="w-full bg-white dark:bg-darkBg p-4
+                     border-4 border-black dark:border-white shadow-custom-lg dark:shadow-custom-lg-white"
           >
             <MobileNavLinks setIsOpen={setIsOpen} activeSection={activeSection} />
           </div>
@@ -165,15 +157,13 @@ function NavLinks({ activeSection }: NavLinksProps) {
             key={link.href}
             href={link.href}
             className={cn(
-              "px-3 py-1 font-bold text-black dark:text-white transform transition-all duration-200",
-              isActive
-                ? "bg-white dark:bg-main border-2 border-black -rotate-2"
-                : "hover:-translate-y-1 hover:rotate-2 border-2 border-transparent"
+              "px-4 py-2 font-bold text-black dark:text-darkText transition-all duration-200",
+              isActive ? "bg-[#FFD166]" : "hover:-translate-y-1 hover:rotate-2"
             )}
             onClick={(e) => {
               if (link.href.startsWith("#")) {
                 e.preventDefault();
-                scrollToHash(link.href.substring(1));
+                scrollToElement(link.href.substring(1));
               }
             }}
           >
@@ -207,18 +197,15 @@ function MobileNavLinks({ setIsOpen, activeSection }: MobileNavLinksProps) {
             key={link.href}
             href={link.href}
             className={cn(
-              "p-2 text-center text-lg font-bold transform transition-transform",
+              "p-3 text-center text-lg font-bold transform transition-transform",
               isActive
-                ? "bg-white dark:bg-main border-2 border-black -rotate-2"
-                : "bg-main dark:bg-darkBg hover:rotate-2 border-2 border-black"
+                ? "bg-[#FFD166] text-black -rotate-1 shadow-custom border-2 border-black dark:border-white"
+                : "bg-bg dark:bg-darkBg hover:rotate-1 hover:bg-[#FFD166] hover:text-black"
             )}
-            style={{
-              boxShadow: "4px 4px 0px 0px #000000",
-            }}
             onClick={(e) => {
               if (link.href.startsWith("#")) {
                 e.preventDefault();
-                scrollToHash(link.href.substring(1));
+                scrollToElement(link.href.substring(1));
               }
               setIsOpen(false);
             }}
